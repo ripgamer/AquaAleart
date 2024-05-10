@@ -1,0 +1,13 @@
+{
+    "type": "service_account",
+    "project_id": "careurplant",
+    "private_key_id": "6a10f720d58e81648f3e2996bfd65be9fd12f8df",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDN31pDsKwyr/9W\nqMZMnR6H8GDnzQsMOEvuF5DhO+pzecPB3vMstGYsZtICiR+fqN24oaXKlE0Rrf6Z\nVpnn0FmCQ69ksTc6f38RX6vJl0y8GRhapn5H6EZkhBRQh+ph+//yFCJOCpPdI/8A\nXKzTH0sSGrXDOo0gYVbV1x0+HE9IdHMe2EiqcILs3XmJ0lUqPx8QdHcelmQmWAnw\nrSyNrxRRQLDvSZOAn8VGb+gQidBY4vtPCR0oZ/NXolnIcBUOBVGgwde5j/rnZzW6\nMH/eJFFBlzFZCLUemq+sHeTrMsc5BzFQlhOVOZfeO3621szunX6ZeVaSIthls/oP\nMGk7FznfAgMBAAECggEAIwImvtkFx07PbGSh5/hV70bsq65eARN3sgK2495E9aMQ\nq2Cm2ITK1SUc9EpuIr/cCGAQqdzDKEz+vQORg26WMgUhh81s91kj+gfbVhoQ9fGM\nhynF0qOIiOI+9BzQuh3Yvck3ti6tS08qN10LFJG/OdJp80t7ITT8R7vfYKb+wnKg\n1hIShFwV7ecq4K47PlZW5XhRoL7bUkTq2+8lZ9/VShUY9msVff1nCEI1Cl/pziYj\nA8PGAyN6HE3fOS6BP+jRq1a9Rr2mTdGD4xCJZat79HESZCtVS+RYc7U3OHCWEX0I\nmalGqPYe8ljkaCFcyR6to2Alu9UUHqG4VhmDqGjyPQKBgQDvMWo8mVnn4++1btj3\ndM/eFsRuhOT5j9IRtGduTP+r59nwoJZleoF3uld1KUUpXPLPQlWTgH0SJ8pxc6sJ\nhKgeO145wL4HHERnB5MNBn0rscS8kOfaz7H8ZC/50q9QkIwVvjp69YfsSwAEYNo8\nvOcpxmm7LyWnzona1EC2uERPOwKBgQDcVpHy4XGzq+fVRKcEUMv+Zfq1wQrr1M26\nYMXvtW3+h2phLDsc0SNj9pVbrYgdKCibpRWJeWPZvOK0CVba2gCIt9WEGHnPyYg7\nJE/F7HSzGWIWBV0hH2D36sFYRfFs5Mzh4CnPirzwiOM6owlZOZ11l2A1qQJEeoAd\nU+jBEJwdrQKBgFAEU+nZ0z3D/tjPMD34EeHV8/iU9JSYDEpn84HuuEkl0r6wuh9Q\nkCcha0iCeeSQd5nmMwKZJT4BmbPCYiFZA3S5n5fqZqeySR++ZO8ikJUhbxM11ppY\niM5KJdKJLKTi9jn/3UhtAv+FR4gvblKLTzmmapB4ATzV10AhaVS26AMpAoGAIM6L\nAJzsrxHjfO+x5oSZOxG4GKPbmm2fDCcokZ5z+Df1cO6DBrFlEZc/ed0GrUCzeylD\nYaq/YUYsgx343rEi7zhgBEEYsgWR0SyA7DlezuPypNC7oxjm+ULs8tXHMq2GjAMy\ndoJzy2S2YJ6x36UiesXFP3ggrE2JEdTSjRyKAikCgYAoReodbcLuUS+4hfZFDH1w\nTJba/7gguvbw4QN/eWdde1lZAGiZ/A0wiK76nftaxq2wvPAahjHLs7pvD5dDlZ/z\nvwM/ifBXelxyMyFgWKCCHTmDNuRA2w6ZkjP89W3qt4d16KjUVxDwiyJcg/SVMRxT\nzQMA6MyafJNH/qwi3s4X/w==\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-zr1me@careurplant.iam.gserviceaccount.com",
+    "client_id": "106306410368410557417",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-zr1me%40careurplant.iam.gserviceaccount.com",
+    "universe_domain": "googleapis.com"
+  }
