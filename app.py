@@ -1,79 +1,65 @@
-# import streamlit as st
-# import firebase_admin
-# from firebase_admin import credentials, db
-# import time
-
-# # Initialize Firebase Admin SDK
-# cred = credentials.Certificate("key.json")  # Replace '/key.json' with your actual key file path (downloaded from Firebase Console
-# firebase_admin.initialize_app(cred, {
-#     'databaseURL': 'https://aquaalert2-6a2ac-default-rtdb.asia-southeast1.firebasedatabase.app/'
-# })
-
-# # Function to fetch real-time data from Firebase
-# def fetch_data():
-#     ref = db.reference('/your-data-node')  # Replace 'your-data-node' with your actual node path
-#     data = ref.get()
-#     return data
-
-# # Main function to create the Streamlit app
-# def main():
-#     st.title('Real-time Data Meter')
-    
-#     # Get Firebase API keys and other essentials from user
-#     firebase_config = st.text_input('Paste your Firebase API keys and other essentials here:')
-    
-#     # Check if Firebase config is provided
-#     if firebase_config:
-#         # Connect to Firebase Realtime Database
-#         cred = credentials.Certificate(firebase_config)
-#         firebase_admin.initialize_app(cred, {
-#             'databaseURL': 'https://aquaalert2-6a2ac-default-rtdb.asia-southeast1.firebasedatabase.app/'
-#         })
-        
-#         # Display real-time data meter
-#         st.write('Real-time Data Meter:')
-#         while True:
-#             data = fetch_data()  # Fetch real-time data
-#             if data:
-#                 # Display data as meter (example)
-#                 value = data['value']  # Assuming 'value' is the key for your data
-#                 st.write(f'Meter Value: {value}')
-#             else:
-#                 st.write('No data available')
-#             time.sleep(1)  # Update every 1 second
-
-# # Run the app
-# if __name__ == '__main__':
-#     main()
 import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import db
+from firebase_admin import credentials, db
 import streamlit as st
+import pandas as pd
 
 # Initialize Firebase Admin SDK
-cred = credentials.Certificate("key2.json")
-firebase_admin.initialize_app(cred, {
-    'databaseURL': 'https://careurplant-default-rtdb.firebaseio.com/'
-})
+if not firebase_admin._apps:
+    cred = credentials.Certificate("key2.json")
+    firebase_admin.initialize_app(cred, {
+        'databaseURL': 'https://careurplant-default-rtdb.firebaseio.com/'
+    })
 
+# Function to retrieve data from Firebase and convert it to DataFrame
+def get_data_from_firebase():
+    try:
+        ref = db.reference('/previous_tds_value')  # Reference to the data in your Firebase RTDB
+        data = ref.get()
+        if isinstance(data, dict):
+            # Parse data into lists
+            keys = list(data.keys())
+            values = [int(value) for value in data.values()]  # Convert values to integers
+            # Create DataFrame
+            df = pd.DataFrame({"ID": keys, "Value": values})
+            return df
+        else:
+            print("Data retrieved from Firebase is not in expected format.")
+            print("Make sure the specified path exists and contains data in JSON format.")
+            return None
+    except Exception as e:
+        print("Error retrieving data from Firebase:", e)
+        return None
+# Function to retrieve temperature values from Firebase and convert it to DataFrame
+def get_temperature_from_firebase():
+    try:
+        ref = db.reference('/previous_temp_value')  # Reference to the temperature data in your Firebase RTDB
+        temperature_data = ref.get()
+        if isinstance(temperature_data, dict):
+            # Create DataFrame for temperature data
+            df_temperature = pd.DataFrame.from_dict(temperature_data, orient='index', columns=['Temperature'])
+            return df_temperature
+        else:
+            print("Temperature data retrieved from Firebase is not in expected format.")
+            print("Make sure the specified path exists and contains temperature data in JSON format.")
+            return None
+    except Exception as e:
+        print("Error retrieving temperature data from Firebase:", e)
+        return None
 # Create a Streamlit app
-st.title("Real-time Data from Firebase RTDB")
+st.title("Firebase Realtime Database Data Visualization")
 
-# Function to listen for real-time updates from Firebase
-@st.cache(allow_output_mutation=True)
-def listen_to_firebase():
-    ref = db.reference('/tds_value')  # Reference to the data in your Firebase RTDB
-    return ref
+# Retrieve data from Firebase and display it
+firebase_data = get_data_from_firebase()
+temperature_data = get_temperature_from_firebase()
+if firebase_data is not None:
+    st.write("TDS Graph:")
+    st.write(firebase_data)
+    # Reset index to use sequential indices as x-axis labels
+    firebase_data_reset_index = firebase_data.reset_index(drop=True)
 
-ref = listen_to_firebase()
-
-# Function to display real-time updates
-def display_realtime_data(ref):
-    snapshot = ref.get()
-    if snapshot is not None:
-        st.write("Real-time data:")
-        st.write(snapshot)
-
-# Display real-time updates
-while True:
-    display_realtime_data(ref)
+    # Display data in a line chart
+    st.line_chart(firebase_data.set_index("ID"), use_container_width=True)
+# Display section for temperature values
+if temperature_data is not None:
+    st.header("Temperature Values")
+    st.write(temperature_data)
