@@ -2,6 +2,7 @@ import firebase_admin
 from firebase_admin import credentials, db
 import streamlit as st
 import pandas as pd
+import time
 
 # Initialize Firebase Admin SDK
 if not firebase_admin._apps:
@@ -45,8 +46,9 @@ def get_temperature_from_firebase():
     except Exception as e:
         print("Error retrieving temperature data from Firebase:", e)
         return None
+
 # Create a Streamlit app
-st.title("Firebase Realtime Database Data Visualization")
+st.title("AquaAleart - Water Quality Monitoring System")
 
 # Retrieve data from Firebase and display it
 firebase_data = get_data_from_firebase()
