@@ -51,13 +51,13 @@ def get_temperature_from_firebase():
         return None
 
 # Create a Streamlit app
-st.title("AquaAleart - Water Quality Monitoring System")
+st.title("AquaAleart - Water Quality Monitoring System 💧")
 
 # Retrieve data from Firebase and display it
 firebase_data = get_data_from_firebase()
 temperature_data = get_temperature_from_firebase()
 if firebase_data is not None:
-    st.header("TDS Graph:")
+    st.header("TDS Graph 📊 :")
     st.write(firebase_data)
     # Reset index to use sequential indices as x-axis labels
     firebase_data_reset_index = firebase_data.reset_index(drop=True)
@@ -66,6 +66,6 @@ if firebase_data is not None:
     st.line_chart(firebase_data.set_index("ID"), use_container_width=True)
 # Display section for temperature values
 if temperature_data is not None:
-    st.header("Temperature Values")
+    st.header("Temperature Graph 🌡️ :")
     st.write(temperature_data)
     st.line_chart(temperature_data.set_index("ID"), use_container_width=True)
