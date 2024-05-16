@@ -36,9 +36,12 @@ def get_temperature_from_firebase():
         ref = db.reference('/previous_temp_value')  # Reference to the temperature data in your Firebase RTDB
         temperature_data = ref.get()
         if isinstance(temperature_data, dict):
-            # Create DataFrame for temperature data
-            df_temperature = pd.DataFrame.from_dict(temperature_data, orient='index', columns=['Temperature'])
-            return df_temperature
+            # Parse data into lists
+            keys = list(temperature_data.keys())
+            values = [float(value) for value in temperature_data.values()]  # Convert values to integers
+            # Create DataFrame
+            df = pd.DataFrame({"ID": keys, "Value": values})
+            return df
         else:
             print("Temperature data retrieved from Firebase is not in expected format.")
             print("Make sure the specified path exists and contains temperature data in JSON format.")
@@ -65,3 +68,4 @@ if firebase_data is not None:
 if temperature_data is not None:
     st.header("Temperature Values")
     st.write(temperature_data)
+    st.line_chart(temperature_data.set_index("ID"), use_container_width=True)
