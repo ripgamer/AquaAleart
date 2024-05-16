@@ -57,7 +57,7 @@ st.title("AquaAleart - Water Quality Monitoring System")
 firebase_data = get_data_from_firebase()
 temperature_data = get_temperature_from_firebase()
 if firebase_data is not None:
-    st.write("TDS Graph:")
+    st.header("TDS Graph:")
     st.write(firebase_data)
     # Reset index to use sequential indices as x-axis labels
     firebase_data_reset_index = firebase_data.reset_index(drop=True)
